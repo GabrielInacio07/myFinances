@@ -1,7 +1,6 @@
 package myFinances.apiFinaces.DTOs.Renda;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -10,16 +9,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class RendaDTO {
 
-    private BigDecimal rendaFixa;
+    private BigDecimal incomeFixed;
     private BigDecimal freeLance;
-    private BigDecimal rendimento;
+    private BigDecimal performance;
 
-    @Override
-    public String toString() {
-        return "RendaDTO{" +
-                "salario=" + rendaFixa +
-                ", freeLance=" + freeLance +
-                ", rendimento=" + rendimento +
-                '}';
-    }
 }
