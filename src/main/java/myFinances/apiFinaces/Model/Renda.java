@@ -1,4 +1,4 @@
-package myFinances.apiFinaces.model;
+package myFinances.apiFinaces.Model;
 
 import jakarta.persistence.*;
 import lombok.*;

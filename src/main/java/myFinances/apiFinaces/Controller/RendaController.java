@@ -2,7 +2,7 @@ package myFinances.apiFinaces.Controller;
 
 import lombok.RequiredArgsConstructor;
 import myFinances.apiFinaces.DTOs.Renda.RendaDTO;
-import myFinances.apiFinaces.service.RendaService;
+import myFinances.apiFinaces.Service.RendaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
