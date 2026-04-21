@@ -3,8 +3,8 @@ package myFinances.apiFinaces.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,30 +12,33 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "income")
-public class Renda {
+@Table(name = "users")
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private BigDecimal incomeFixed;
+    private String name;
+
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Column(nullable = false)
-    private BigDecimal freeLance;
+    private String password;
 
-    @Column(nullable = false)
-    private BigDecimal performance;
 
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime lastUpdate;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Usuario usuario;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Renda> rendas;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Custo> custos;
 
     @PrePersist
     public void prePersist() {
@@ -46,4 +49,5 @@ public class Renda {
     public void preUpdate() {
         lastUpdate = LocalDateTime.now();
     }
+
 }

@@ -6,32 +6,30 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "costs")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "income")
-public class Renda {
+public class Custo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private BigDecimal incomeFixed;
+    private String description;
 
-    @Column(nullable = false)
-    private BigDecimal freeLance;
-
-    @Column(nullable = false)
-    private BigDecimal performance;
+    private BigDecimal value;
 
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime lastUpdate;
+
+    @Enumerated(EnumType.STRING)
+    private Categoria category;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -46,4 +44,5 @@ public class Renda {
     public void preUpdate() {
         lastUpdate = LocalDateTime.now();
     }
+
 }
