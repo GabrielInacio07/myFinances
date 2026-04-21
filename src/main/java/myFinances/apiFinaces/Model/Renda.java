@@ -6,13 +6,13 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "income")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "income")
 public class Renda {
 
     @Id
@@ -20,13 +20,13 @@ public class Renda {
     private Long id;
 
     @Column(nullable = false)
-    private BigDecimal incomeFixed;
+    private String description;
 
     @Column(nullable = false)
-    private BigDecimal freeLance;
+    private BigDecimal value;
 
     @Column(nullable = false)
-    private BigDecimal performance;
+    private LocalDateTime date;
 
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;

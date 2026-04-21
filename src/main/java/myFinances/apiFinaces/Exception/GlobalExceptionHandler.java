@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponseDTO> IllegalArgument(IllegalArgumentException exception){
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponseDTO> handleIllegalArgument(IllegalArgumentException exception){
+
         ErrorResponseDTO dto =  ErrorResponseDTO.builder()
                 .code(400)
                 .message("IllegalArgument")
@@ -20,8 +21,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dto);
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<ErrorResponseDTO> handleDuplicateEmail(DataIntegrityViolationException exception) {
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponseDTO> handleDuplicateEmail(EmailAlreadyExistsException exception) {
 
         ErrorResponseDTO dto = ErrorResponseDTO.builder()
                 .code(409)
@@ -30,5 +31,17 @@ public class GlobalExceptionHandler {
                 .build();
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body(dto);
+    }
+
+    @ExceptionHandler(EntityNotFound.class)
+    public ResponseEntity<ErrorResponseDTO> handleEntityNotFound(EntityNotFound exception){
+
+            ErrorResponseDTO dto = ErrorResponseDTO.builder()
+                    .code(404)
+                    .message("NOT_FOUND")
+                    .details(exception.getMessage())
+                    .build();
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(dto);
     }
 }

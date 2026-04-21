@@ -2,13 +2,11 @@ package myFinances.apiFinaces.Controller;
 
 import lombok.RequiredArgsConstructor;
 import myFinances.apiFinaces.DTOs.Custo.CustoDTO;
+import myFinances.apiFinaces.DTOs.User.UserResponseDTO;
 import myFinances.apiFinaces.Service.CustoService;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RequestMapping("/custo")
